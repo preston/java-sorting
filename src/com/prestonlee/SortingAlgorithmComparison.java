@@ -13,6 +13,17 @@ import java.util.TreeMap;
 import java.util.Map.Entry;
 import java.util.Random;
 
+import com.prestonlee.student.AllenWattsSort;
+import com.prestonlee.student.AlvinMoradi;
+import com.prestonlee.student.BrianLauSort;
+import com.prestonlee.student.ChrisMcDonald;
+import com.prestonlee.student.MichaelBergSort;
+import com.prestonlee.student.RexEngstromSort;
+import com.prestonlee.student.StevenHondaSort;
+import com.prestonlee.student.TravisGeerySort;
+import com.prestonlee.student.WesleyBlaes;
+import com.prestonlee.student.ZachJetsonSort;
+
 /**
  * Driver for final individual assignment
  * 
@@ -27,7 +38,7 @@ public class SortingAlgorithmComparison {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		final int length = 100000000;
+		final int length = 1000000000;
 		final int maxValue = length * 2;
 		final int seed = 1337;
 		TreeMap<SortingAlgorithm, Integer> algorithms = new TreeMap<SortingAlgorithm, Integer>();
@@ -39,7 +50,16 @@ public class SortingAlgorithmComparison {
 		algorithms.put(new PrestonLeeSort(createData(200, maxValue, seed)), 0);
 		algorithms.put(new PrestonLeeSort2(createData(200, maxValue, seed)), 0);
 		algorithms.put(new WrongSort(createData(200, maxValue, seed)), 0);
-
+		algorithms.put(new AllenWattsSort(createData(200, maxValue, seed)), 0);
+		algorithms.put(new AlvinMoradi(createData(200, maxValue, seed)), 0);
+		algorithms.put(new BrianLauSort(createData(200, maxValue, seed)), 0);
+		algorithms.put(new ChrisMcDonald(createData(200, maxValue, seed)), 0);
+		algorithms.put(new MichaelBergSort(createData(200, maxValue, seed)), 0);
+		algorithms.put(new StevenHondaSort(createData(200, maxValue, seed)), 0);
+		algorithms.put(new TravisGeerySort(createData(200, maxValue, seed)), 0);
+		algorithms.put(new ZachJetsonSort(createData(200, maxValue, seed)), 0);
+		algorithms.put(new WesleyBlaes(createData(200, maxValue, seed)), 0);
+		
 		for (Entry<SortingAlgorithm, Integer> entry : algorithms.entrySet()) {
 			int time = runAlgorithm(entry.getKey());
 			entry.setValue(time);
@@ -60,9 +80,9 @@ public class SortingAlgorithmComparison {
 	}
 
 	public static int runAlgorithm(final SortingAlgorithm a) {
-		final long before = System.currentTimeMillis();
+		final long before = System.nanoTime();
 		a.sort();
-		final int totalMilliseconds = (int) (System.currentTimeMillis() - before);
+		final int totalMilliseconds = (int) (System.nanoTime() - before);
 
 		out.println("\n" + a.getClass().getName() + ":");
 		out.println("\tTime:\t" + totalMilliseconds);
